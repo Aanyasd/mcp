@@ -1,0 +1,17 @@
+#  Build development image for mcp server
+#  Usage: docker build -t server .
+#  To run: docker run -it --rm server
+    
+FROM python:3.11-slim-buster AS build
+
+WORKDIR /mcp        
+#could be something else- have to figure
+
+# Copy your code
+COPY server.py .
+COPY requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["python", "server.py"]

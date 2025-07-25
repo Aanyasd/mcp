@@ -1,0 +1,22 @@
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "8000:8000"
+    networks:
+      - mcpnet
+
+  mcp-client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    depends_on:
+      - mcp-server
+    networks:
+      - mcpnet
+
+networks:
+  mcpnet:
+    driver: bridge

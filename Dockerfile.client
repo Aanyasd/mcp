@@ -1,0 +1,15 @@
+#  Build development image for mcp client
+#  Usage: docker build -t client .
+#  To run: docker run -it --rm client
+    
+FROM python:3.11-slim-buster AS build
+
+# WORKDIR /mcp        
+#could be something else- have to figure
+
+COPY client.py .
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["python3", "client.py"]
