@@ -4,11 +4,12 @@
     
 FROM python:3.11-slim-buster AS build
 
-# WORKDIR /mcp        
+WORKDIR /mcp        
 #could be something else- have to figure
 
 COPY client.py .
 COPY requirements.txt .
+COPY client_file.json .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
